@@ -1,45 +1,42 @@
 {
-  "QuestIdentifier": 'FirstQuest',
-  'StartingObjective': {
+  "QuestIdentifier": "FirstQuest",
+  "StartingObjective": {
     "objectiveTitle": "Getting the Trash",
     "objectiveDescription": "Go get the Trash from the room",
     "identifier": "part one",
-    "rectangle": [
-      "X":"",
-      "Y":"",
-      "Width":"",
-      "Height":""
-    ],
-    "texture":,
-    "color":,
-    "IsCompletedFlag":
+    "rectangle": {
+      "x": 96,
+      "y": 448,
+      "width": 32,
+      "height": 32
+    },
+    "textureValue": 6,
+    "IsCompletedFlag": false
   },
-  'MiddleObjective': {
-    "objectiveTitle":,
-    "objectiveDescription":,
-    "identifier":,
-    "rectangle": [
-      "X":"",
-      "Y":"",
-      "Width":"",
-      "Height":"",
-    ],
-    "texture":,
-    "color":,
-    "IsCompletedFlag":
+  "MiddleObjective": {
+    "objectiveTitle":"",
+    "objectiveDescription":"",
+    "identifier":"",
+    "rectangle": {
+      "X": "",
+      "Y": "",
+      "Width": "",
+      "Height": ""
+    },
+    "textureValue":6,
+    "IsCompletedFlag":false
   },
-  'EndingObjective': {
-    "objectiveTitle":,
-    "objectiveDescription":,
-    "identifier":,
-    "rectangle": [
-      "X":"",
-      "Y":"",
-      "Width":"",
-      "Height":""
-    ],
-    "texture":,
-    "color":,
-    "IsCompletedFlag":
+  "EndingObjective": {
+    "objectiveTitle":"",
+    "objectiveDescription":"",
+    "identifier":"",
+    "rectangle": {
+      "X": "",
+      "Y": "",
+      "Width": "",
+      "Height": ""
+    },
+    "textureValue":6,
+    "IsCompletedFlag":false
   }
 }

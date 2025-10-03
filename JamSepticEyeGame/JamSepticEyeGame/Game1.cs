@@ -71,9 +71,10 @@ namespace JamSepticEyeGame
             
             _spriteBatch.Begin(transformMatrix: transformMatrix);
             mapBuilder.DrawMapFromList(_spriteBatch);
-
             _spriteBatch.Draw(player.texture, new Vector2(player.rectangle.X, player.rectangle.Y), player.color, 0f, new Vector2(1, 1), new Vector2(1, 1), player.flipper, 0f);
-
+            
+            QuestSystem.DrawCurrentQuestObjective(_spriteBatch);
+            
             _spriteBatch.End();
 
             base.Draw(gameTime);
