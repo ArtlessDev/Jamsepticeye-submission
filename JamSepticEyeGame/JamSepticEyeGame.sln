@@ -1,11 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.12.35707.178 d17.12
+VisualStudioVersion = 17.12.35707.178
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JamSepticEyeGame", "JamSepticEyeGame\JamSepticEyeGame.csproj", "{68AE1727-B7B9-4EAA-8880-533C642D370F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JairLib", "..\..\BrackeysGameJamAugust25\BiscuitTower\JairLib\JairLib.csproj", "{5253D415-79E9-4F74-8ECC-BDFFD5028521}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JairLib", "JairLib\JairLib.csproj", "{E9A06940-1D04-4B1F-8F41-071DCEFFA63B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		{68AE1727-B7B9-4EAA-8880-533C642D370F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{68AE1727-B7B9-4EAA-8880-533C642D370F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{68AE1727-B7B9-4EAA-8880-533C642D370F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5253D415-79E9-4F74-8ECC-BDFFD5028521}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5253D415-79E9-4F74-8ECC-BDFFD5028521}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5253D415-79E9-4F74-8ECC-BDFFD5028521}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5253D415-79E9-4F74-8ECC-BDFFD5028521}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E9A06940-1D04-4B1F-8F41-071DCEFFA63B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E9A06940-1D04-4B1F-8F41-071DCEFFA63B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E9A06940-1D04-4B1F-8F41-071DCEFFA63B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E9A06940-1D04-4B1F-8F41-071DCEFFA63B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

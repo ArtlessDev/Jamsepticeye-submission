@@ -12,15 +12,15 @@
     "IsCompletedFlag": false
   },
   "MiddleObjective": {
-    "objectiveTitle":"",
-    "objectiveDescription":"",
-    "identifier":"",
-    "x": 0,
-    "y": 0,
-    "width": 0,
-    "height": 0,
-    "textureValue":6,
-    "IsCompletedFlag":false
+    "objectiveTitle": "Taking out da trash",
+    "objectiveDescription": "Take Trash to Dumpster",
+    "identifier": "",
+    "x": 810,
+    "y": 96,
+    "width": 32,
+    "height": 32,
+    "textureValue": 6,
+    "IsCompletedFlag": false
   },
   "EndingObjective": {
     "objectiveTitle":"",
@@ -28,8 +28,8 @@
     "identifier":"",
     "x": 0,
     "y": 0,
-    "width": 0,
-    "height": 0,
+    "width": 32,
+    "height": 32,
     "textureValue":6,
     "IsCompletedFlag":false
   }

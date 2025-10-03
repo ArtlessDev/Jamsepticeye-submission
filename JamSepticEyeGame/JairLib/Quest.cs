@@ -9,6 +9,7 @@ using System.Text.Json;
 using System.Threading.Tasks;
 using MonoGame.Extended;
 using System.Diagnostics;
+using Microsoft.Xna.Framework.Input;
 
 namespace JairLib
 {
@@ -38,16 +39,51 @@ namespace JairLib
 
         public static void DrawCurrentQuestObjective(SpriteBatch _spriteBatch)
         {
-            if (!CurrentQuest.StartingObjective.IsCompletedFlag){
+            if (!CurrentQuest.StartingObjective.IsCompletedFlag)
+            {
                 _spriteBatch.Draw(CurrentQuest.StartingObjective.texture, new Vector2(CurrentQuest.StartingObjective.rectangle.X, CurrentQuest.StartingObjective.rectangle.Y), CurrentQuest.StartingObjective.color);
                 //Debug.WriteLine($"{CurrentQuest.StartingObjective.rectangle.X}, {CurrentQuest.StartingObjective.rectangle.X}");
                 CurrentQuest.StartingObjective.texture = Globals.atlas[CurrentQuest.StartingObjective.textureValue];
 
             }
             else if (!CurrentQuest.MiddleObjective.IsCompletedFlag)
-                _spriteBatch.Draw(CurrentQuest.StartingObjective.texture, new Vector2(CurrentQuest.StartingObjective.rectangle.X, CurrentQuest.StartingObjective.rectangle.Y), CurrentQuest.StartingObjective.color);
+            {
+                _spriteBatch.Draw(CurrentQuest.MiddleObjective.texture, new Vector2(CurrentQuest.MiddleObjective.rectangle.X, CurrentQuest.MiddleObjective.rectangle.Y), CurrentQuest.MiddleObjective.color);
+                CurrentQuest.MiddleObjective.texture = Globals.atlas[CurrentQuest.MiddleObjective.textureValue];
+            }
             else if (!CurrentQuest.EndingObjective.IsCompletedFlag)
-                _spriteBatch.Draw(CurrentQuest.StartingObjective.texture, new Vector2(CurrentQuest.StartingObjective.rectangle.X, CurrentQuest.StartingObjective.rectangle.Y), CurrentQuest.StartingObjective.color);
+            {
+                _spriteBatch.Draw(CurrentQuest.EndingObjective.texture, new Vector2(CurrentQuest.EndingObjective.rectangle.X, CurrentQuest.EndingObjective.rectangle.Y), CurrentQuest.EndingObjective.color);
+                CurrentQuest.EndingObjective.texture = Globals.atlas[CurrentQuest.EndingObjective.textureValue];
+            }
+        }
+
+        public static void Update(GameTime gameTime, PlayerOverworld player)
+        {
+            if (CurrentQuest.StartingObjective.IsCompletedFlag == false)
+            {
+                if (player.rectangle.Intersects(CurrentQuest.StartingObjective.rectangle) && Globals.keyb.WasKeyPressed(Keys.E))
+                {
+                    CurrentQuest.StartingObjective.IsCompletedFlag = true;
+                    Debug.WriteLine(CurrentQuest.StartingObjective.objectiveTitle);
+                }
+            }
+            if (CurrentQuest.MiddleObjective.IsCompletedFlag == false)
+            {
+                if (player.rectangle.Intersects(CurrentQuest.MiddleObjective.rectangle) && Globals.keyb.WasKeyPressed(Keys.E))
+                {
+                    CurrentQuest.MiddleObjective.IsCompletedFlag = true;
+                    Debug.WriteLine(CurrentQuest.MiddleObjective.objectiveTitle);
+                }
+            }
+            if (CurrentQuest.EndingObjective.IsCompletedFlag == false)
+            {
+                if (player.rectangle.Intersects(CurrentQuest.EndingObjective.rectangle) && Globals.keyb.WasKeyPressed(Keys.E))
+                {
+                    CurrentQuest.EndingObjective.IsCompletedFlag = true;
+                    Debug.WriteLine(CurrentQuest.EndingObjective.objectiveTitle);
+                }
+            }
         }
     }
 

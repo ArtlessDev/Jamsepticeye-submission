@@ -57,7 +57,9 @@ namespace JamSepticEyeGame
             Globals.Update(gameTime);
 
             player.Update(gameTime);
-            
+
+            QuestSystem.Update(gameTime, player);
+
             base.Update(gameTime);
         }
 
