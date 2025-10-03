@@ -34,19 +34,19 @@ namespace JamSepticEyeGame
 
             var viewportAdapter = new BoxingViewportAdapter(Window, GraphicsDevice, Globals.ViewportWidth, Globals.ViewportHeight);
             Globals.MainCamera = new OrthographicCamera(viewportAdapter);
+            Globals.MainCamera.Position = new(Globals.STARTING_POSITION.X/2, Globals.STARTING_POSITION.Y/2);
         }
 
         protected override void LoadContent()
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            Globals.Load();
+            Globals.Load(player);
+
             player = new PlayerOverworld();
 
             mapBuilder = new MapBuilder();
 
-            //Globals.CamMove(player);
-            // TODO: use this.Content to load your game content here
         }
 
         protected override void Update(GameTime gameTime)
@@ -57,16 +57,7 @@ namespace JamSepticEyeGame
             Globals.Update(gameTime);
 
             player.Update(gameTime);
-            //string values = "";
-            //foreach (var val in mapBuilder.Spaces)
-            //{
-            //    values += val.ToString();
-            //}
-            //Debug.WriteLine(values);
-            //_camera.Move(GetMovementDirection() * movementSpeed * gameTime.GetElapsedSeconds());
-            //_screenPosition = _camera.WorldToScreen(new Vector2(player.X, player.Y));
-            // TODO: Add your update logic here
-
+            
             base.Update(gameTime);
         }
 
@@ -79,10 +70,8 @@ namespace JamSepticEyeGame
             var transformMatrix = Globals.MainCamera.GetViewMatrix();
             
             _spriteBatch.Begin(transformMatrix: transformMatrix);
-            //_spriteBatch.DrawRectangle(new RectangleF(250, 250, 50, 50), Color.Aqua, 1f);
-            SeedBuilder.DrawSeedGridFromList(_spriteBatch, mapBuilder);
+            mapBuilder.DrawMapFromList(_spriteBatch);
 
-            //_spriteBatch.Draw(player.texture, player.rectangle, player.color);
             _spriteBatch.Draw(player.texture, new Vector2(player.rectangle.X, player.rectangle.Y), player.color, 0f, new Vector2(1, 1), new Vector2(1, 1), player.flipper, 0f);
 
             _spriteBatch.End();

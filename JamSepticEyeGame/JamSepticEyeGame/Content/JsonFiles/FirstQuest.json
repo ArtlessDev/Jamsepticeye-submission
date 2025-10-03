@@ -1,0 +1,45 @@
+{
+  "QuestIdentifier": 'FirstQuest',
+  'StartingObjective': {
+    "objectiveTitle": "Getting the Trash",
+    "objectiveDescription": "Go get the Trash from the room",
+    "identifier": "part one",
+    "rectangle": [
+      "X":"",
+      "Y":"",
+      "Width":"",
+      "Height":""
+    ],
+    "texture":,
+    "color":,
+    "IsCompletedFlag":
+  },
+  'MiddleObjective': {
+    "objectiveTitle":,
+    "objectiveDescription":,
+    "identifier":,
+    "rectangle": [
+      "X":"",
+      "Y":"",
+      "Width":"",
+      "Height":"",
+    ],
+    "texture":,
+    "color":,
+    "IsCompletedFlag":
+  },
+  'EndingObjective': {
+    "objectiveTitle":,
+    "objectiveDescription":,
+    "identifier":,
+    "rectangle": [
+      "X":"",
+      "Y":"",
+      "Width":"",
+      "Height":""
+    ],
+    "texture":,
+    "color":,
+    "IsCompletedFlag":
+  }
+}
