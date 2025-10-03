@@ -4,12 +4,10 @@
     "objectiveTitle": "Getting the Trash",
     "objectiveDescription": "Go get the Trash from the room",
     "identifier": "part one",
-    "rectangle": {
-      "x": 96,
-      "y": 448,
-      "width": 32,
-      "height": 32
-    },
+    "x": 96,
+    "y": 448,
+    "width": 32,
+    "height": 32,
     "textureValue": 6,
     "IsCompletedFlag": false
   },
@@ -17,12 +15,10 @@
     "objectiveTitle":"",
     "objectiveDescription":"",
     "identifier":"",
-    "rectangle": {
-      "X": "",
-      "Y": "",
-      "Width": "",
-      "Height": ""
-    },
+    "x": 0,
+    "y": 0,
+    "width": 0,
+    "height": 0,
     "textureValue":6,
     "IsCompletedFlag":false
   },
@@ -30,12 +26,10 @@
     "objectiveTitle":"",
     "objectiveDescription":"",
     "identifier":"",
-    "rectangle": {
-      "X": "",
-      "Y": "",
-      "Width": "",
-      "Height": ""
-    },
+    "x": 0,
+    "y": 0,
+    "width": 0,
+    "height": 0,
     "textureValue":6,
     "IsCompletedFlag":false
   }
