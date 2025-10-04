@@ -6,7 +6,7 @@ using JairLib;
 using MonoGame.Extended.ViewportAdapters;
 using MonoGame.Extended;
 using JairLib.TileGenerators;
-using System;
+using System.Drawing;
 using System.Diagnostics;
 
 namespace JamSepticEyeGame
@@ -15,9 +15,9 @@ namespace JamSepticEyeGame
     {
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
-
         PlayerOverworld player;
         MapBuilder mapBuilder;
+        Texture2D shader, one, two;
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);
@@ -34,7 +34,7 @@ namespace JamSepticEyeGame
 
             var viewportAdapter = new BoxingViewportAdapter(Window, GraphicsDevice, Globals.ViewportWidth, Globals.ViewportHeight);
             Globals.MainCamera = new OrthographicCamera(viewportAdapter);
-            Globals.MainCamera.Position = new(Globals.STARTING_POSITION.X/2, Globals.STARTING_POSITION.Y/2);
+            Globals.MainCamera.Position = new Vector2(Globals.STARTING_POSITION.X-(Globals.ViewportWidth / 2) + 16, Globals.STARTING_POSITION.Y + 16 - (Globals.ViewportWidth/2)+160);//Globals.STARTING_POSITION;//new(Globals.STARTING_POSITION.X/2, Globals.STARTING_POSITION.Y/2);
         }
 
         protected override void LoadContent()
@@ -42,8 +42,10 @@ namespace JamSepticEyeGame
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
             Globals.Load(player);
-
             player = new PlayerOverworld();
+
+            one = Globals.GlobalContent.Load<Texture2D>("lowVisibilityFakeShader");
+            two = Globals.GlobalContent.Load<Texture2D>("lowVisibilityFakeShader2");
 
             mapBuilder = new MapBuilder();
 
@@ -56,16 +58,41 @@ namespace JamSepticEyeGame
 
             Globals.Update(gameTime);
 
-            player.Update(gameTime);
+            player.Update(gameTime, mapBuilder);
 
             QuestSystem.Update(gameTime, player);
+
+            var deltaTime = (float)gameTime.TotalGameTime.Milliseconds;
+
+            if (deltaTime < 500)
+            {
+                shader = one;
+            }
+            else
+            {
+                shader = two;
+            }
+
+
+            foreach (var space in mapBuilder.Spaces)
+            {
+                if (space.rectangle.Intersects(player.rectangle) && space.isCollidable)
+                {
+                    //player.rectangle = new Rectangle(player.rectangle.X + (playerSpeed * 2), rectangle.Y, 64, 64);
+                    Debug.WriteLine("collision");
+                }
+            }
+            //foreach(var item in mapBuilder.Spaces)
+            //{
+            //    item.Update(player);
+            //}
 
             base.Update(gameTime);
         }
 
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.Black);
+            GraphicsDevice.Clear(Microsoft.Xna.Framework.Color.Black);
 
             // TODO: Add your drawing code here
 
@@ -74,7 +101,8 @@ namespace JamSepticEyeGame
             _spriteBatch.Begin(transformMatrix: transformMatrix);
             mapBuilder.DrawMapFromList(_spriteBatch);
             _spriteBatch.Draw(player.texture, new Vector2(player.rectangle.X, player.rectangle.Y), player.color, 0f, new Vector2(1, 1), new Vector2(1, 1), player.flipper, 0f);
-            
+            _spriteBatch.Draw(shader, new Vector2(Globals.MainCamera.Position.X, Globals.MainCamera.Position.Y), Microsoft.Xna.Framework.Color.White);
+
             QuestSystem.DrawCurrentQuestObjective(_spriteBatch);
             
             _spriteBatch.End();

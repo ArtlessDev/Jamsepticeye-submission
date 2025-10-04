@@ -1,13 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using MonoGame.Extended.Graphics;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Text.Json;
-using System.Threading.Tasks;
-using MonoGame.Extended;
 using System.Diagnostics;
 using Microsoft.Xna.Framework.Input;
 
@@ -34,28 +27,33 @@ namespace JairLib
         {
             string jsonString = File.ReadAllText(FirstQuest);
             CurrentQuest = JsonSerializer.Deserialize<Quest>(jsonString);
-            Debug.WriteLine(CurrentQuest.StartingObjective.rectangle);
         }
 
         public static void DrawCurrentQuestObjective(SpriteBatch _spriteBatch)
         {
-            if (!CurrentQuest.StartingObjective.IsCompletedFlag)
+            KeyObjective[] objectives =
             {
-                _spriteBatch.Draw(CurrentQuest.StartingObjective.texture, new Vector2(CurrentQuest.StartingObjective.rectangle.X, CurrentQuest.StartingObjective.rectangle.Y), CurrentQuest.StartingObjective.color);
-                //Debug.WriteLine($"{CurrentQuest.StartingObjective.rectangle.X}, {CurrentQuest.StartingObjective.rectangle.X}");
-                CurrentQuest.StartingObjective.texture = Globals.atlas[CurrentQuest.StartingObjective.textureValue];
+                CurrentQuest.StartingObjective,
+                CurrentQuest.MiddleObjective,
+                CurrentQuest.EndingObjective,
+            };
 
-            }
-            else if (!CurrentQuest.MiddleObjective.IsCompletedFlag)
+            foreach (var objective in objectives)
             {
-                _spriteBatch.Draw(CurrentQuest.MiddleObjective.texture, new Vector2(CurrentQuest.MiddleObjective.rectangle.X, CurrentQuest.MiddleObjective.rectangle.Y), CurrentQuest.MiddleObjective.color);
-                CurrentQuest.MiddleObjective.texture = Globals.atlas[CurrentQuest.MiddleObjective.textureValue];
+
+                if (!objective.IsCompletedFlag)
+                {
+                    objective.Draw(_spriteBatch);
+                    objective.texture = Globals.gameObjectAtlas[objective.textureValue];
+                    return;
+                }
+                
+                if (objective.IsCompletedFlag)
+                {
+                    objective.Draw(_spriteBatch);
+                }
             }
-            else if (!CurrentQuest.EndingObjective.IsCompletedFlag)
-            {
-                _spriteBatch.Draw(CurrentQuest.EndingObjective.texture, new Vector2(CurrentQuest.EndingObjective.rectangle.X, CurrentQuest.EndingObjective.rectangle.Y), CurrentQuest.EndingObjective.color);
-                CurrentQuest.EndingObjective.texture = Globals.atlas[CurrentQuest.EndingObjective.textureValue];
-            }
+
         }
 
         public static void Update(GameTime gameTime, PlayerOverworld player)

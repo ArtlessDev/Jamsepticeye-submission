@@ -2,21 +2,14 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MonoGame.Extended.Graphics;
-using MonoGame.Extended.Serialization.Json;
-using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace JairLib
 {
     public class KeyObjective //: ITileObject
     {
         public KeyObjective() {
-            //rectangle = new();
-            texture = Globals.atlas[textureValue];
+            texture = Globals.gameObjectAtlas[textureValue];
             color = Color.White;
         }
         public string objectiveTitle { get; set; }
@@ -37,12 +30,26 @@ namespace JairLib
             if (player.rectangle.Intersects(this.rectangle) && Globals.keyb.WasKeyPressed(Keys.E))
             {
                 Debug.WriteLine(this.objectiveTitle);
+                IsCompletedFlag = true;
             }
         }
 
         public void isPlayerInteracting()
         {
 
+        }
+
+        public void Draw(SpriteBatch _spriteBatch)
+        {
+
+            if (IsCompletedFlag) 
+            { 
+                _spriteBatch.DrawString(Globals.font, objectiveTitle, new(rectangle.X, rectangle.Y), Color.White);
+            }
+            else
+            {
+                _spriteBatch.Draw(texture, new Vector2(rectangle.X, rectangle.Y), color);
+            }
         }
     }
 }

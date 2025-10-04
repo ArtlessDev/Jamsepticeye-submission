@@ -3,13 +3,7 @@ using CsvHelper.Configuration;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MonoGame.Extended.Graphics;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
 using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace JairLib.TileGenerators
 {
@@ -22,6 +16,7 @@ namespace JairLib.TileGenerators
                 HasHeaderRecord = false,
             };
             var defaultFilePath = "C:\\Code\\Jamsepticeye-submission\\JamSepticEyeGame\\JamSepticEyeGame\\Content\\Sprites\\grayboxedMap.csv";
+            //var defaultFilePath = "C:\\Code\\Jamsepticeye-submission\\JamSepticEyeGame\\JamSepticEyeGame\\Content\\Sprites\\grayboxedMap.csv";
             //var defaultFilePath = "C:\\Code\\Jamsepticeye-submission\\JamSepticEyeGame\\JamSepticEyeGame\\Content\\Sprites\\test.csv";
             using (var reader = new StreamReader(defaultFilePath))
             using (var csv = new CsvReader(reader, config))
@@ -37,9 +32,12 @@ namespace JairLib.TileGenerators
                     {
                         var value = int.Parse(csv.GetField(indexer));
 
-                        Spaces.Add(new TileSpace(
-                            value
-                            ));
+                        Spaces.Add(
+                            new TileSpace(value)
+                            {
+                                rectangle = new Rectangle(i * 32, numberOfRows*32,32,32)
+                            }
+                            );
                         indexer++;
                     }
                     ///column needs to be the height value which is 40 in this case
@@ -56,7 +54,7 @@ namespace JairLib.TileGenerators
         public int rows { get; set; }
         public int columns { get; set; }
         public List<int> records { get; set; }
-        public static CsvHelper.CsvReader csvFileReader {  get; set; }
+        public static CsvReader csvFileReader {  get; set; }
 
         public void DrawMapFromList(SpriteBatch _spriteBatch)
         {
@@ -71,7 +69,8 @@ namespace JairLib.TileGenerators
                     for (int left = 0; left < columns; left++)
                     {
                         TileSpace t = Spaces[indexer];
-                        _spriteBatch.Draw(t.texture, new Vector2(32 * left, 32 * down), Color.White);
+                        _spriteBatch.Draw(Spaces[indexer].texture, new Vector2(t.rectangle.X, t.rectangle.Y), Color.White);
+                        //_spriteBatch.Draw(Spaces[indexer].texture, new Vector2(32 * left, 32 * down), Color.White);
                         indexer++;
                     }
                 }

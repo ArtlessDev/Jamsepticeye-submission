@@ -1,13 +1,6 @@
 ﻿using Microsoft.Xna.Framework.Graphics;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using MonoGame;
 using Microsoft.Xna.Framework;
 using MonoGame.Extended.Graphics;
-using System.Diagnostics;
 
 namespace JairLib.TileGenerators
 {
@@ -129,47 +122,18 @@ namespace JairLib.TileGenerators
             if (map.Spaces != null)
             {
                 var mapTilesValues = map.Spaces;
-                //TileSpace g = mapTilesValues[6];
-                //_spriteBatch.Draw(g.texture, new Vector2(64, 64), Color.White);
                 var indexer = 0;
-
 
                 ///currently will make a square and does not fill out the entire map, the map is however coming in correctly and has 1200 values
                 for (int down = 0; down < map.rows; down++)
                 {
-                    //TileSpace g = mapTilesValues[down];
-                    //_spriteBatch.Draw(mapTilesValues[indexer].texture, new Vector2(32 * down, 32), Color.White);
-
                     for (int left = 0; left < map.columns; left++)
                     {
-                        //var indexer = (down + left)-1;
                         var t = map.Spaces[indexer];
                         _spriteBatch.Draw(t.texture, new Vector2(32 * left, 32 * down), Color.White);
-                        //_spriteBatch.Draw(mapTilesValues[indexer].texture, new Vector2(32 * left, 32 * down), Color.White);
-                        //Debug.WriteLine($"down: {down} | left: {left} | map obj: {map.records[0]}");
                         indexer++;
                     }
                 }
-
-                //for (int down = 0; down < 8; down++)
-                //{
-                //    var xValue = (down + 1) * 64;
-                //    var yValue = 0;
-                //    var adjSquareRoot = (int)Math.Sqrt(Globals.PUZZLE_SIZE_ADJUSTED);
-
-                //    for (int left = 0 + down; left < 10 + adjSquareRoot; left++)
-                //    {
-                //        yValue = (left + 1) * 64;
-
-                //        if (Globals.tileSpaces[left] == null)
-                //        {
-                //            break;
-                //        }
-
-                //        _spriteBatch.Draw(Globals.tileSpaces[down].texture, new Vector2(xValue, yValue), Color.White);
-                //    }
-
-                //}
             }
         }
 
@@ -202,7 +166,6 @@ namespace JairLib.TileGenerators
                         tileSpace.texture = Globals.atlas[digit - '0'];
 
                         Globals.tileSpaces.Add(tileSpace);
-                        //_spriteBatch.Draw(tileSpace.texture, new Vector2(xValue, height), Color.White);
                     }
                 }
             }
