@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using MonoGame.Extended.Graphics;
 using System.Diagnostics;
 
@@ -25,6 +26,15 @@ namespace JairLib
             csvValue = value;
             isCollidable = setCollision();
             texture = Globals.atlas[value];
+            rectangle = new Rectangle();
+            color = Color.White;
+        }
+
+        public TileSpace(Texture2DAtlas specificAtlas, int value)
+        {
+            csvValue = value;
+            isCollidable = setCollision();
+            texture = specificAtlas[value];
             rectangle = new Rectangle();
             color = Color.White;
         }

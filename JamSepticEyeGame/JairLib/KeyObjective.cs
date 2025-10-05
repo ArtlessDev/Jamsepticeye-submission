@@ -12,6 +12,10 @@ namespace JairLib
             texture = Globals.gameObjectAtlas[textureValue];
             color = Color.White;
         }
+        public KeyObjective(Texture2DAtlas specifiedAtlas) {
+            texture = specifiedAtlas[textureValue];
+            color = Color.White;
+        }
         public string objectiveTitle { get; set; }
         public string objectiveDescription { get; set; }
         public string identifier { get; set; }
