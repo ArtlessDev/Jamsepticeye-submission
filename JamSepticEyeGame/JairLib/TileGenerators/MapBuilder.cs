@@ -15,7 +15,8 @@ namespace JairLib.TileGenerators
             {
                 HasHeaderRecord = false,
             };
-            var defaultFilePath = "C:\\Code\\Jamsepticeye-submission\\JamSepticEyeGame\\JamSepticEyeGame\\Content\\Sprites\\grayboxedMap.csv";
+            //var defaultFilePath = "C:\\Code\\Jamsepticeye-submission\\JamSepticEyeGame\\JamSepticEyeGame\\Content\\Sprites\\grayboxedMap.csv";
+            var defaultFilePath = "..\\..\\..\\Content\\Sprites\\grayboxedMap.csv";
             //var defaultFilePath = "C:\\Code\\Jamsepticeye-submission\\JamSepticEyeGame\\JamSepticEyeGame\\Content\\Sprites\\grayboxedMap.csv";
             //var defaultFilePath = "C:\\Code\\Jamsepticeye-submission\\JamSepticEyeGame\\JamSepticEyeGame\\Content\\Sprites\\test.csv";
             using (var reader = new StreamReader(defaultFilePath))
@@ -65,7 +66,6 @@ namespace JairLib.TileGenerators
                 ///currently will make a square and does not fill out the entire map, the map is however coming in correctly and has 1200 values
                 for (int down = 0; down < rows; down++)
                 {
-
                     for (int left = 0; left < columns; left++)
                     {
                         TileSpace t = Spaces[indexer];

@@ -23,7 +23,7 @@ public class PlayerOverworld : ITileObject
     {
         identifier = "blokkit";
         //texture = Globals.atlas[2 - '0'];
-        texture = Globals.gameObjectAtlas[4]; //blue
+        texture = Globals.gameObjectAtlas[10]; //blue
         rectangle = new Rectangle((int)Globals.STARTING_POSITION.X, (int)Globals.STARTING_POSITION.Y, PLAYER_TILESIZE_IN_WORLD, PLAYER_TILESIZE_IN_WORLD);
         color = Color.White;
         flipper = SpriteEffects.None;
@@ -38,7 +38,7 @@ public class PlayerOverworld : ITileObject
 
         if (Globals.keyb.IsKeyDown(Keys.Left) || Globals.keyb.IsKeyDown(Keys.A))
         {
-            flipper = SpriteEffects.FlipHorizontally;
+            flipper = SpriteEffects.None;
             rectangle = new Rectangle(rectangle.X - playerSpeed, rectangle.Y, PLAYER_TILESIZE_IN_WORLD, PLAYER_TILESIZE_IN_WORLD);            
             state = PlayerState.Walking;
             Globals.CamMove(this.rectangle);
@@ -55,7 +55,7 @@ public class PlayerOverworld : ITileObject
         else if (Globals.keyb.IsKeyDown(Keys.Right) || Globals.keyb.IsKeyDown(Keys.D))
         {
             
-            flipper = SpriteEffects.None;
+            flipper = SpriteEffects.FlipHorizontally;
             rectangle = new Rectangle(rectangle.X + playerSpeed, rectangle.Y, PLAYER_TILESIZE_IN_WORLD, PLAYER_TILESIZE_IN_WORLD);
             state = PlayerState.Walking;
             Globals.CamMove(this.rectangle);

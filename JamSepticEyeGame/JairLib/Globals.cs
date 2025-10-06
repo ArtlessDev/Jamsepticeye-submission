@@ -42,7 +42,7 @@ namespace JairLib
             atlas = Texture2DAtlas.Create("tileSpaceSet", puzzleSet, 32, 32);
             spriteSheet = new SpriteSheet("SpriteSheet/tileSpaceSetJSON", atlas);
             
-            gameObjectSet = GlobalContent.Load<Texture2D>("graybox");
+            gameObjectSet = GlobalContent.Load<Texture2D>("objects");
             gameObjectAtlas = Texture2DAtlas.Create("gameObjectSet", gameObjectSet, 32, 32);
             gameObjectSheet = new SpriteSheet("SpriteSheet/gameObjectJSON", gameObjectAtlas);
             

@@ -28,12 +28,15 @@ namespace JairLib
         public Texture2DRegion texture { get; set; }
         public Color color { get; set; }
         public bool IsCompletedFlag { get; set; }
+        public bool IsMainQuest { get; set; }
+        public bool IsAutoTrigger { get; set; }
+        
     
         public void Update(GameTime gameTime, PlayerOverworld player)
         {
             if (player.rectangle.Intersects(this.rectangle) && Globals.keyb.WasKeyPressed(Keys.E))
             {
-                Debug.WriteLine(this.objectiveTitle);
+                //Debug.WriteLine(this.objectiveTitle);
                 IsCompletedFlag = true;
             }
         }
@@ -48,11 +51,25 @@ namespace JairLib
 
             if (IsCompletedFlag) 
             { 
-                _spriteBatch.DrawString(Globals.font, objectiveTitle, new(rectangle.X, rectangle.Y), Color.White);
+                _spriteBatch.DrawString(Globals.font, objectiveDescription, new(rectangle.X, rectangle.Y), Color.White);
             }
             else
             {
                 _spriteBatch.Draw(texture, new Vector2(rectangle.X, rectangle.Y), color);
+            }
+        }
+
+        public void DrawNoCheck(SpriteBatch _spriteBatch, PlayerOverworld player)
+        {
+            if (this.IsAutoTrigger && player.rectangle.Intersects(this.rectangle))
+            {
+                _spriteBatch.DrawString(Globals.font, objectiveDescription, new(player.rectangle.X, player.rectangle.Y+32), Color.White);
+            }
+
+            _spriteBatch.Draw(texture, new Vector2(rectangle.X, rectangle.Y), color);
+            if(IsCompletedFlag)
+            {
+                _spriteBatch.DrawString(Globals.font, objectiveDescription, new(rectangle.X, rectangle.Y-32), Color.White);
             }
         }
     }

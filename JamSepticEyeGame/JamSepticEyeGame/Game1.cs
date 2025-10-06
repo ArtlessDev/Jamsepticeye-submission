@@ -103,8 +103,15 @@ namespace JamSepticEyeGame
             _spriteBatch.Draw(player.texture, new Vector2(player.rectangle.X, player.rectangle.Y), player.color, 0f, new Vector2(1, 1), new Vector2(1, 1), player.flipper, 0f);
             _spriteBatch.Draw(shader, new Vector2(Globals.MainCamera.Position.X, Globals.MainCamera.Position.Y), Microsoft.Xna.Framework.Color.White);
 
-            QuestSystem.DrawCurrentQuestObjective(_spriteBatch);
-            
+            QuestSystem.DrawCurrentQuestObjective(_spriteBatch, player);
+
+            if (QuestSystem.InitiatedFirstQuest == false)
+            {
+                _spriteBatch.DrawString(Globals.font, "I should get to bed..", new Vector2((float)player.rectangle.X-64, (float)player.rectangle.Y - 32), Microsoft.Xna.Framework.Color.White);
+
+            }
+
+            _spriteBatch.DrawString(Globals.font, "Movement[wasd/arrows]\n\nInteract[E]", new Vector2((float)Globals.MainCamera.Position.X, (float)Globals.MainCamera.Position.Y+400), Microsoft.Xna.Framework.Color.White);
             _spriteBatch.End();
 
             base.Draw(gameTime);
