@@ -29,6 +29,7 @@ namespace JairLib
         
     }
 
+    //was planning an enum to determine collision but itd only really add an extra layer of confusion, will probably iterate on this
     public enum Texture
     {
         GroundTile,

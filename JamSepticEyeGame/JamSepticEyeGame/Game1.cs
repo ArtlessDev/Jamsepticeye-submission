@@ -56,14 +56,14 @@ namespace JamSepticEyeGame
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            Globals.Update(gameTime);
-
-            player.Update(gameTime, mapBuilder);
-
-            QuestSystem.Update(gameTime, player);
-
             var deltaTime = (float)gameTime.TotalGameTime.Milliseconds;
 
+            Globals.Update(gameTime);
+            player.Update(gameTime, mapBuilder);
+            Globals.CamMove(player.rectangle);
+            QuestSystem.Update(gameTime, player);
+
+            //SHADER IS 2 SPRITES AND FLIPS BETWEEN THEM
             if (deltaTime < 500)
             {
                 shader = one;
@@ -72,20 +72,6 @@ namespace JamSepticEyeGame
             {
                 shader = two;
             }
-
-
-            foreach (var space in mapBuilder.Spaces)
-            {
-                if (space.rectangle.Intersects(player.rectangle) && space.isCollidable)
-                {
-                    //player.rectangle = new Rectangle(player.rectangle.X + (playerSpeed * 2), rectangle.Y, 64, 64);
-                    Debug.WriteLine("collision");
-                }
-            }
-            //foreach(var item in mapBuilder.Spaces)
-            //{
-            //    item.Update(player);
-            //}
 
             base.Update(gameTime);
         }
@@ -97,21 +83,22 @@ namespace JamSepticEyeGame
             // TODO: Add your drawing code here
 
             var transformMatrix = Globals.MainCamera.GetViewMatrix();
-            
+
             _spriteBatch.Begin(transformMatrix: transformMatrix);
+            
+            //DRAW TILEMAP > PLAYER > OBJECTS > OBJECT TEXT  
             mapBuilder.DrawMapFromList(_spriteBatch);
             _spriteBatch.Draw(player.texture, new Vector2(player.rectangle.X, player.rectangle.Y), player.color, 0f, new Vector2(1, 1), new Vector2(1, 1), player.flipper, 0f);
-            _spriteBatch.Draw(shader, new Vector2(Globals.MainCamera.Position.X, Globals.MainCamera.Position.Y), Microsoft.Xna.Framework.Color.White);
-
             QuestSystem.DrawCurrentQuestObjective(_spriteBatch, player);
-
             if (QuestSystem.InitiatedFirstQuest == false)
             {
-                _spriteBatch.DrawString(Globals.font, "I should get to bed..", new Vector2((float)player.rectangle.X-64, (float)player.rectangle.Y - 32), Microsoft.Xna.Framework.Color.White);
-
+                _spriteBatch.DrawString(Globals.font, "I should get to bed..", new Vector2((float)player.rectangle.X - 64, (float)player.rectangle.Y - 32), Microsoft.Xna.Framework.Color.White);
             }
-
+            
+            //UI & SHADER
+            _spriteBatch.Draw(shader, new Vector2(Globals.MainCamera.Position.X, Globals.MainCamera.Position.Y), Microsoft.Xna.Framework.Color.White);
             _spriteBatch.DrawString(Globals.font, "Movement[wasd/arrows]\n\nInteract[E]", new Vector2((float)Globals.MainCamera.Position.X, (float)Globals.MainCamera.Position.Y+400), Microsoft.Xna.Framework.Color.White);
+
             _spriteBatch.End();
 
             base.Draw(gameTime);

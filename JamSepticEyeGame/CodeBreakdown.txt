@@ -1,0 +1,78 @@
+
+JairLib
+- MapBuilder
+    - Constructor
+        - handles the csv and populates the List<TileSpace> Spaces with the map data and correlating texture and rectangle position
+    - DrawMapFromList()
+        - draws the map column by column (this was a headache to figure out)
+- Globals
+    - 
+- JairIObject   (Custom interfaces and enums)
+    - ITileObject, this was mainly used over the IJairObject because of Texture2DRegion vs Texture2D
+- KeyObjective
+    - 
+- PlayerIndex
+    - 
+- Quest
+    -
+- Textures
+    - handles the textures of the tiles
+    - planned to use enum, will iterate on that idea
+- TileSpace
+    - 3 constructors
+        - default
+        - index from default Atlas collection
+        - index from specific Atlas collection
+    - csvValue determines the texture in the atlas whether it is collidable or not (for the future, 
+        TileSpace would a base class and each map would have their own, so that the setCollision 
+        doesnt mess with separate maps)
+    - Update() 
+        - checks intersection with player, probably a more efficient way of doing this but i dont know it
+
+
+
+Midnight Wanderer (Core)
+- GAME1.CS
+    -> MapBuilder mapBuilder
+    
+    - Initialize()
+        - from framework, make a viewport, this will be the camera and will allow for camera movement in game
+    
+    - LoadContent()
+        - JairLib.GLOBALS.Load()
+            - Creates TileMaps for objects/player and the Map of the game
+            - creates 2 usable atlas' (framework named collection) so that references to the tilemap can be numeric
+            - loads font, instantiates the *tileSpaces* List
+            - instantiates player (uses index 10 from the atlas)
+            - QUESTSYSTEM.SetFirstQuestAsCurrent()
+                - handles JSON deserialization 
+            -> instantiates MapBuilder()
+    
+    - Update()
+        - JairLib.GLOBALS.Update()
+            - gets keyboard input
+        - JairLib.player.Update()
+            - handles player movement
+        - JairLib.CamMove()
+            - handles the camera positioning
+        - JairLib.QuestSystem.Update()
+            -SideObjectives
+                - checks interaction
+                - to get 'real' ending, remove the 2 invisible side objective triggers 
+            - checks if all main objectives are complete
+            -MainObjectives
+                - checks interaction for each main objective, definitely should refactor
+        - handles shader
+    
+    - Draw(): order is important, good to know for the future the order that the function works to 
+                have layering in future games; to keep things tidy, each class should have it's own
+                draw method, in case anything should go along with it and so that it does not 
+                clutter the main game function 
+        -> DRAW TILEMAP (TOPMOST)
+        -> PLAYER
+        -> OBJECTS
+        -> OBJECT TEXT
+        -> UI
+        -> SHADER (TOPMOST)
+
+- CONTENT/ FOLDER

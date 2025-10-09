@@ -55,23 +55,28 @@ namespace JairLib
         {
             KeyboardExtended.Update();
             keyb = KeyboardExtended.GetState();
-
-            //GenerateSeed();
-
-            //seed = SeedBuilder.TheStringGetsThisLength(Globals.PUZZLE_SIZE);
         }
 
+        /// <summary>
+        /// from space invaders game
+        /// NOT USED IN THIS GAME
+        /// </summary>
+        /// <param name="player"></param>
         public static void CamMoveHorizontal(PlayerOverworld player)
         {
-            MainCamera.Move(new(player.rectangle.X-100, player.rectangle.Y-100));
+            MainCamera.Move(new(player.rectangle.X - 100, player.rectangle.Y - 100));
         }
 
         public static void CamMove(Rectangle player)
         {
-            MainCamera.Position = new(player.X-(ViewportWidth/2) +16, player.Y-(ViewportHeight/2)+16);
-            //MainCamera.Move(new(, player.rectangle.Y-100));
+            var playerFocusX = player.X - (ViewportWidth / 2) + 16;
+            var playerFocusY = player.Y - (ViewportHeight / 2) + 16;
+            MainCamera.Position = new(playerFocusX, playerFocusY);
         }
 
+        /// <summary>
+        /// NOT USED IN THIS GAME
+        /// </summary>
         private static void GenerateSeed()
         {
             if (keyb.WasKeyPressed(Keys.Enter))
@@ -84,9 +89,14 @@ namespace JairLib
             }
         }
 
+        /// <summary>
+        /// NOT USED IN THIS GAME
+        /// </summary>
+        /// <param name="gameTime"></param>
+        /// <param name="_spriteBatch"></param>
         public static void Draw(GameTime gameTime, SpriteBatch _spriteBatch)
         {
-            
+
             if (!string.IsNullOrEmpty(seed))
             {
                 _spriteBatch.DrawString(font, seed, new Vector2(8, 8), Color.DarkGreen);

@@ -11,19 +11,21 @@ namespace JairLib.TileGenerators
     {
         public MapBuilder()
         {
+            //var defaultFilePath = "C:\\Code\\Jamsepticeye-submission\\JamSepticEyeGame\\JamSepticEyeGame\\Content\\Sprites\\grayboxedMap.csv";
+            //var defaultFilePath = "C:\\Code\\Jamsepticeye-submission\\JamSepticEyeGame\\JamSepticEyeGame\\Content\\Sprites\\grayboxedMap.csv";
+            //var defaultFilePath = "C:\\Code\\Jamsepticeye-submission\\JamSepticEyeGame\\JamSepticEyeGame\\Content\\Sprites\\test.csv";
+            
+            filePath = ".\\Content\\grayboxedMap.csv";
+            Spaces = new List<TileSpace>();
+
+            /// imports the csv, and fills the Spaces List to  
             var config = new CsvConfiguration(CultureInfo.InvariantCulture)
             {
                 HasHeaderRecord = false,
             };
-            //var defaultFilePath = "C:\\Code\\Jamsepticeye-submission\\JamSepticEyeGame\\JamSepticEyeGame\\Content\\Sprites\\grayboxedMap.csv";
-            var defaultFilePath = ".\\Content\\grayboxedMap.csv";
-            //var defaultFilePath = "C:\\Code\\Jamsepticeye-submission\\JamSepticEyeGame\\JamSepticEyeGame\\Content\\Sprites\\grayboxedMap.csv";
-            //var defaultFilePath = "C:\\Code\\Jamsepticeye-submission\\JamSepticEyeGame\\JamSepticEyeGame\\Content\\Sprites\\test.csv";
-            using (var reader = new StreamReader(defaultFilePath))
+            using (var reader = new StreamReader(filePath))
             using (var csv = new CsvReader(reader, config))
             {
-                Spaces = new List<TileSpace>();
-                records = new List<int>();
                 var numberOfRows = 0;
                 while (csv.Read())
                 {
@@ -31,10 +33,10 @@ namespace JairLib.TileGenerators
 
                     for (int i = 0; i < Globals.mapWidth; i++)
                     {
-                        var value = int.Parse(csv.GetField(indexer));
+                        var csvSpaceValue = int.Parse(csv.GetField(indexer));
 
                         Spaces.Add(
-                            new TileSpace(value)
+                            new TileSpace(csvSpaceValue)
                             {
                                 rectangle = new Rectangle(i * 32, numberOfRows*32,32,32)
                             }
@@ -51,10 +53,10 @@ namespace JairLib.TileGenerators
             }
         }
 
+        public string filePath{ get; set; }
         public List<TileSpace> Spaces { get; set; }
         public int rows { get; set; }
         public int columns { get; set; }
-        public List<int> records { get; set; }
         public static CsvReader csvFileReader {  get; set; }
 
         public void DrawMapFromList(SpriteBatch _spriteBatch)

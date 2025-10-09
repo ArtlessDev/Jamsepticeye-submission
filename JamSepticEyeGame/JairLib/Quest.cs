@@ -142,11 +142,6 @@ namespace JairLib
                 }
             }
 
-            if (!InitiatedFirstQuest)
-            {
-
-            }
         }
     }
-
 }

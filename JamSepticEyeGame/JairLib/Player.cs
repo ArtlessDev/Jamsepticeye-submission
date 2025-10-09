@@ -41,7 +41,6 @@ public class PlayerOverworld : ITileObject
             flipper = SpriteEffects.None;
             rectangle = new Rectangle(rectangle.X - playerSpeed, rectangle.Y, PLAYER_TILESIZE_IN_WORLD, PLAYER_TILESIZE_IN_WORLD);            
             state = PlayerState.Walking;
-            Globals.CamMove(this.rectangle);
 
             foreach (var space in mapBuilder.Spaces)
             {
@@ -58,7 +57,6 @@ public class PlayerOverworld : ITileObject
             flipper = SpriteEffects.FlipHorizontally;
             rectangle = new Rectangle(rectangle.X + playerSpeed, rectangle.Y, PLAYER_TILESIZE_IN_WORLD, PLAYER_TILESIZE_IN_WORLD);
             state = PlayerState.Walking;
-            Globals.CamMove(this.rectangle);
 
             foreach (var space in mapBuilder.Spaces)
             {
@@ -74,7 +72,6 @@ public class PlayerOverworld : ITileObject
 
             rectangle = new Rectangle(rectangle.X, rectangle.Y - playerSpeed, PLAYER_TILESIZE_IN_WORLD, PLAYER_TILESIZE_IN_WORLD);
             state = PlayerState.Walking;
-            Globals.CamMove(this.rectangle);
 
             foreach (var space in mapBuilder.Spaces)
             {
@@ -89,7 +86,6 @@ public class PlayerOverworld : ITileObject
             
             rectangle = new Rectangle(rectangle.X, rectangle.Y + playerSpeed, PLAYER_TILESIZE_IN_WORLD, PLAYER_TILESIZE_IN_WORLD);
             state = PlayerState.Walking;
-            Globals.CamMove(this.rectangle);
 
             foreach (var space in mapBuilder.Spaces)
             {
@@ -137,16 +133,5 @@ public class PlayerOverworld : ITileObject
     public void Update(GameTime gameTime, MapBuilder mapBuilder)
     {
         Movement(mapBuilder);
-
-
-        //if(state == PlayerState.Walking)
-        //{
-        //    AnimatePlayerMoving(gameTime);
-        //}
-        //else
-        //{
-        //    AnimatePlayerIdle(gameTime);
-        //}
-
     }
 }

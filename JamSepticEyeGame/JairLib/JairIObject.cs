@@ -10,7 +10,8 @@ public interface IJairObject
     public Color color{get; set;}
 }
 
-public interface ICustomButton 
+//not used for this game
+public interface ICustomButton
 {
     public void ButtonClicked()
     {
@@ -25,6 +26,7 @@ public interface ITileObject
     public Color color { get; set; }
 }
 
+//not used this game
 public enum PlayerState
 {
     Walking,
