@@ -26,11 +26,12 @@ namespace JairLib
         public static bool InitiatedFirstQuest = false;
         //public static string FirstQuest = "C:\\Code\\Jamsepticeye-submission\\JamSepticEyeGame\\JamSepticEyeGame\\Content\\JsonFiles\\FirstQuest.json";
         //NEED TO DOUBLE CHECK THIS IN THE RELEASE BUILD TO MAKE SURE IT WORKS
-        public static string FirstQuest = "..\\..\\..\\Content\\JsonFiles\\FirstQuest.json";
+        public static string FirstQuest = ".\\Content\\FirstQuest.json";
         public static string FirstQuestMod = "FirstQuest.json";
 
         public static void SetFirstQuestAsCurrent()
         {
+            using Stream stream = TitleContainer.OpenStream(FirstQuest);
             string jsonString = File.ReadAllText(FirstQuest);
             CurrentQuest = JsonSerializer.Deserialize<Quest>(jsonString);
             CurrentQuest.QuestComplete = false;

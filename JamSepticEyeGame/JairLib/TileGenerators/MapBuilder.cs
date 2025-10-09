@@ -16,7 +16,7 @@ namespace JairLib.TileGenerators
                 HasHeaderRecord = false,
             };
             //var defaultFilePath = "C:\\Code\\Jamsepticeye-submission\\JamSepticEyeGame\\JamSepticEyeGame\\Content\\Sprites\\grayboxedMap.csv";
-            var defaultFilePath = "..\\..\\..\\Content\\Sprites\\grayboxedMap.csv";
+            var defaultFilePath = ".\\Content\\grayboxedMap.csv";
             //var defaultFilePath = "C:\\Code\\Jamsepticeye-submission\\JamSepticEyeGame\\JamSepticEyeGame\\Content\\Sprites\\grayboxedMap.csv";
             //var defaultFilePath = "C:\\Code\\Jamsepticeye-submission\\JamSepticEyeGame\\JamSepticEyeGame\\Content\\Sprites\\test.csv";
             using (var reader = new StreamReader(defaultFilePath))
