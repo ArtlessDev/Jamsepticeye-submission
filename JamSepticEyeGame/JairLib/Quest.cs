@@ -25,7 +25,6 @@ namespace JairLib
         public static Quest? CurrentQuest;
         public static bool InitiatedFirstQuest = false;
         //public static string FirstQuest = "C:\\Code\\Jamsepticeye-submission\\JamSepticEyeGame\\JamSepticEyeGame\\Content\\JsonFiles\\FirstQuest.json";
-        //NEED TO DOUBLE CHECK THIS IN THE RELEASE BUILD TO MAKE SURE IT WORKS
         public static string FirstQuest = ".\\Content\\FirstQuest.json";
         public static string FirstQuestMod = "FirstQuest.json";
 
@@ -80,6 +79,13 @@ namespace JairLib
 
         public static void Update(GameTime gameTime, PlayerOverworld player)
         {
+            KeyObjective[] objectives =
+{
+                CurrentQuest.StartingObjective,
+                CurrentQuest.MiddleObjective,
+                CurrentQuest.EndingObjective,
+            };
+
             if (CurrentQuest.SideObjectives != null) {
 
                 foreach (var obj in CurrentQuest.SideObjectives)
@@ -141,6 +147,20 @@ namespace JairLib
                     return;
                 }
             }
+
+            //foreach (var obj in objectives)
+            //{
+            //    if (!obj.IsCompletedFlag 
+            //        && player.rectangle.Intersects(CurrentQuest.StartingObjective.rectangle) 
+            //        && Globals.keyb.WasKeyPressed(Keys.E))
+            //    {
+            //        {
+            //            obj.IsCompletedFlag = true;
+            //            InitiatedFirstQuest = true;
+            //            return;
+            //        }
+            //    }
+            //}
 
         }
     }

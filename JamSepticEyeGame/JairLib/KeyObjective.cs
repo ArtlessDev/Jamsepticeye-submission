@@ -36,14 +36,8 @@ namespace JairLib
         {
             if (player.rectangle.Intersects(this.rectangle) && Globals.keyb.WasKeyPressed(Keys.E))
             {
-                //Debug.WriteLine(this.objectiveTitle);
                 IsCompletedFlag = true;
             }
-        }
-
-        public void isPlayerInteracting()
-        {
-
         }
 
         public void Draw(SpriteBatch _spriteBatch)

@@ -57,6 +57,14 @@ namespace JairLib
             keyb = KeyboardExtended.GetState();
         }
 
+
+        public static void CamMove(Rectangle player)
+        {
+            var playerFocusX = player.X - (ViewportWidth / 2) + 16;
+            var playerFocusY = player.Y - (ViewportHeight / 2) + 16;
+            MainCamera.Position = new(playerFocusX, playerFocusY);
+        }
+
         /// <summary>
         /// from space invaders game
         /// NOT USED IN THIS GAME
@@ -65,13 +73,6 @@ namespace JairLib
         public static void CamMoveHorizontal(PlayerOverworld player)
         {
             MainCamera.Move(new(player.rectangle.X - 100, player.rectangle.Y - 100));
-        }
-
-        public static void CamMove(Rectangle player)
-        {
-            var playerFocusX = player.X - (ViewportWidth / 2) + 16;
-            var playerFocusY = player.Y - (ViewportHeight / 2) + 16;
-            MainCamera.Position = new(playerFocusX, playerFocusY);
         }
 
         /// <summary>
